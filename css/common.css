@@ -35,3 +35,11 @@ button {
   display: block;
   object-fit: cover;
 }
+
+.box {
+  transition: transform 0.5s;
+}
+
+.box-translate {
+  transform: translateX(-200%);
+}

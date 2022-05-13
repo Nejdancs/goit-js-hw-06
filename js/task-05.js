@@ -5,7 +5,7 @@ const refs = {
 
 const DEFAULT_USERNAME = "Anonymous";
 
-function onInput(event) {
+function handleInput(event) {
   const userInput = event.currentTarget.value;
 
   if (userInput === "") {
@@ -15,4 +15,4 @@ function onInput(event) {
   }
 }
 
-refs.input.addEventListener("input", onInput);
+refs.input.addEventListener("input", handleInput);

@@ -14,7 +14,6 @@ const images = [
 ];
 
 const galleryRef = document.querySelector(".gallery");
-// const headRef = document.querySelector("head");
 
 const makeGalleryItemMarkup = ({ url, alt }) => {
   return `<li>
@@ -27,6 +26,23 @@ const makeGalleryMarkup = images
   .join("");
 
 galleryRef.insertAdjacentHTML("beforeend", makeGalleryMarkup);
+
+// ===========================================добавление стилей 2 вариант================================
+// galleryRef.style.display = "flex";
+// galleryRef.style.justifyContent = "space-evenly";
+// galleryRef.style.margin = "0";
+// galleryRef.style.padding = "0";
+// galleryRef.style.listStyle = "none";
+
+// const imagesRef = document.querySelectorAll(".gallery img");
+
+// imagesRef.forEach((image) => {
+//   image.style.display = "block";
+//   image.style.objectFit = "cover";
+// });
+
+// ===========================================добавление стилей 3 вариант================================
+// const headRef = document.querySelector("head");
 
 // const style = `<style>
 //       .gallery {
