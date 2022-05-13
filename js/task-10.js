@@ -2,6 +2,7 @@ const refs = {
   inputNumber: document.querySelector("#controls input"),
   createBtn: document.querySelector("[data-create]"),
   destroyBtn: document.querySelector("[data-destroy]"),
+  sortBtn: document.querySelector("[data-sort]"),
   outputBoxes: document.querySelector("#boxes"),
 };
 
@@ -13,7 +14,11 @@ function onCreateBtn() {
   const amount = refs.inputNumber.value;
   const sizeInit = 30;
   const boxes = [];
-  let size = parseInt(refs.outputBoxes.lastElementChild?.style.width);
+  let size = parseInt(
+    refs.outputBoxes.classList.contains("from-big")
+      ? refs.outputBoxes.firstElementChild?.style.width
+      : refs.outputBoxes.lastElementChild?.style.width
+  );
 
   for (let i = 1; i <= amount; i += 1) {
     if (isNaN(size)) {
@@ -25,7 +30,14 @@ function onCreateBtn() {
     boxes.push(createBox(size));
   }
 
-  refs.outputBoxes.append(...boxes);
+  if (refs.outputBoxes.classList.contains("from-big")) {
+    const reverseBoxes = boxes.reverse();
+    refs.outputBoxes.prepend(...reverseBoxes);
+  }
+
+  if (refs.outputBoxes.classList.contains("from-small")) {
+    refs.outputBoxes.append(...boxes);
+  }
   creaateAnimation(boxes);
 }
 
@@ -48,9 +60,37 @@ function createBox(size) {
   return box;
 }
 
+function sortBox() {
+  const boxElements = [...refs.outputBoxes.children];
+
+  const sort = boxElements.sort((a, b) => {
+    if (refs.outputBoxes.classList.contains("from-big")) {
+      return parseInt(b.style.width) - parseInt(a.style.width);
+    }
+
+    return parseInt(a.style.width) - parseInt(b.style.width);
+  });
+
+  return sort;
+}
+
 function onDestroyBtn() {
   refs.outputBoxes.innerHTML = "";
 }
 
+function onSortBtn(event) {
+  refs.outputBoxes.classList.toggle("from-small");
+  refs.outputBoxes.classList.toggle("from-big");
+
+  event.currentTarget.textContent = refs.outputBoxes.classList.contains(
+    "from-big"
+  )
+    ? "Sort big > small"
+    : "Sort small > big";
+
+  refs.outputBoxes.append(...sortBox());
+}
+
 refs.createBtn.addEventListener("click", onCreateBtn);
 refs.destroyBtn.addEventListener("click", onDestroyBtn);
+refs.sortBtn.addEventListener("click", onSortBtn);
