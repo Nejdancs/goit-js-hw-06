@@ -36,10 +36,20 @@ button {
   object-fit: cover;
 }
 
+#boxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .box {
-  transition: transform 0.5s;
+  margin: 1px;
+  border-radius: 5px;
+  border: 1px solid black;
+  transition: all 0.7s;
 }
 
 .box-translate {
-  transform: translateX(-200%);
+  transform: scale(0.8) translateX(-100%);
+  transform-origin: center;
+  opacity: 0;
 }
