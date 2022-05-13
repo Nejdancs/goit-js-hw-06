@@ -36,6 +36,13 @@ button {
   object-fit: cover;
 }
 
+#controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 600px;
+}
+
 #boxes {
   display: flex;
   flex-wrap: wrap;
@@ -52,4 +59,9 @@ button {
   transform: scale(0.8) translateX(-100%);
   transform-origin: center;
   opacity: 0;
+}
+
+.range {
+  display: inline-block;
+  text-align: center;
 }
